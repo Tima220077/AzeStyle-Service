@@ -225,46 +225,6 @@
         <button type="submit">Send Message</button>
       </form>
   </section>
-  <script>
-    document.querySelector('.contact-form').addEventListener('submit', async (e) => {
-      e.preventDefault(); // Stop the form from refreshing the page.
   
-      // Collect form data
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const message = document.getElementById('message').value.trim();
-  
-      // Frontend validation
-      if (!name || !email || !message) {
-        alert('Please fill in all fields.');
-        return;
-      }
-  
-      const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
-      if (!emailRegex.test(email)) {
-        alert('Please enter a valid email address.');
-        return;
-      }
-  
-      // Send the data to the backend
-      try {
-        const response = await fetch('http://localhost:5000/send-email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ name, email, message }),
-        });
-  
-        if (response.ok) {
-          alert('Message sent successfully!');
-        } else {
-          alert('Failed to send the message. Please try again later.');
-        }
-      } catch (error) {
-        alert('Error connecting to the server.');
-      }
-    });
-  </script>
 </body>
 </html>
